@@ -112,7 +112,7 @@ if($_POST){
                         </label>
                     </div>
                     <h4>Image to Display</h4>
-                    <div id="image-cropper" style="text-align:center;">
+                    <div class="image-cropper" style="text-align:center;">
                         <!-- This is where the preview image is displayed -->
                         <div class="cropit-image-preview" style="display:none; margin: 0 auto;"></div>
 
@@ -143,16 +143,24 @@ if($_POST){
     <script src="assets/crop.js"></script>
     
     <script>
-        $('#image-cropper').cropit();
+        $('.image-cropper').cropit();
         $('.cropit-image-input').change(function(){
             $(this).parent().find('.cropit-image-preview').fadeIn();
             $(this).parent().find('.cropit-image-zoom-input').fadeIn();
         });
         
-        $('form').submit(function(){
-//            var imageData = $('#image-cropper').cropit('export');
-//            $('.image-data').val(imageData);
-           
+        $('form').submit(function(e){
+            e.preventDefault();
+            
+            $('.image-cropper').each(function(i, obj){
+                var imageData = $(this).cropit('export', {
+                    type: 'image/jpeg',
+                    quality: .9
+                });
+                
+                $(this).find('.image-data').val(imageData);
+            });
+            
             $.post("go.php", $(this).serialize(),
                 function(data){
                     alert(data);
