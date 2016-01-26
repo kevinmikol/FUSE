@@ -1,5 +1,5 @@
 <?php
-//header('Location: /students');
+header('Location: /students');
 require('includes/header.php'); ?>
 
 <div id="video-wrap">
