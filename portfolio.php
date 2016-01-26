@@ -29,7 +29,6 @@
 
     <!-- Portfolio Item Row -->
     <div class="row">
-
         <div class="col-md-4">
             <img class="img-responsive" src="http://rufflifechicago.com/wp-content/uploads/cat-treats.jpg" alt="">
             <div class="social-links">
@@ -40,7 +39,7 @@
         </div>
 
         <div class="col-md-8">
-            <h3>About Me</h3>
+            <h2>About Me</h2>
             <p><?=$student['bio']?></p>
         </div>
 
@@ -49,11 +48,9 @@
 
     <!-- Related Projects Row -->
     <div class="row">
-
         <div class="col-lg-12">
             <h3 class="page-header">Featured Projects</h3>
         </div>
-        
         <?php
             $stmt = $dbh->prepare('SELECT * FROM portfolio_projects WHERE student = :id');
             $stmt->bindParam(':id', $student['id']);
@@ -68,7 +65,6 @@
                     <p><?=$project['description']?></p>
                 </div>
             <? } ?>
-
     </div>
     <!-- /.row -->
 </div>

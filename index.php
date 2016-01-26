@@ -1,5 +1,5 @@
 <?php
-header('Location: /students');
+//header('Location: /students');
 require('includes/header.php'); ?>
 
 <div id="video-wrap">
@@ -8,7 +8,14 @@ require('includes/header.php'); ?>
     </video>
     
     <div class="content">
+        <div class="countdown">
+            <span class="days"></span>
+            <span class="hours"></span>
+            <span class="minutes"></span>
+            <span class="seconds"></span>
+        </div>
         <h1>Immerse yourself in the experience.</h1>
+        <a class="arrow"><i class="fa fa-arrow-circle-down"></i></a>
     </div>
 </div>
 

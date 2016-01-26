@@ -29,6 +29,7 @@ $SocialNetworks = array(
             /* You can specify preview size in CSS */
             width: 500px;
             height: 300px;
+            cursor: move;
         }
     </style>
 </head>
@@ -180,6 +181,12 @@ $SocialNetworks = array(
             <?  $i++;
                 } ?>
             <hr />
+            <div class="form-row">
+                <label>
+                    <span>Dietary Restrictions?</span>
+                    <input type="text" name="diet">
+                </label>
+            </div>
             <p>Please make sure that all the information above is correct before submitting.</p>
             <div class="form-row">
                 <button type="submit">Submit Form</button>

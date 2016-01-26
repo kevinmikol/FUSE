@@ -1,5 +1,22 @@
+a{
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+}
+
+nav{
+    height: 100px;
+    padding: 20px 0;
+    font-size: 20px;
+}
+
+nav ul li a{
+    color:#fff;
+}
+
 #video-wrap .content{
-    top: 30%;
+    top: 40%;
     position: absolute;
     z-index: 100;
     color:#fff;
@@ -11,10 +28,32 @@
     font-size:4vw;
 }
 
+#video-wrap .content .arrow{
+    font-size:50px;
+    margin:30px;
+    color:#fff;
+    cursor: s-resize;
+    display: block;
+}
+
+.countdown span{
+    height: 60px;
+    width: auto;
+    display: inline-block;
+    background: blue;
+    font-size: 24px;
+    text-align: center;
+    padding:10px 20px;
+    margin:10px;
+}
+
 .cta{
     background:red;
-    height:100px;
+    height: 140px;
     z-index:0;
+    text-align: center;
+    vertical-align: middle;
+    padding: 25px;
 }
 
 .social-links{
