@@ -24,7 +24,8 @@
     $student_portfolio = $student_values['portfolio'];
     unset($student_values['portfolio']);
 
-    $student_values['slug'] = slugify($student_values['name']);
+    $student_values['slug'] = slugify($student_values['first_name']." ".$student_values['last_name']);
+    $student_values['social'] = serialize($student_values['social']);
     
     $cols = '';
     $values = '';
@@ -40,12 +41,12 @@
     $student_id = $dbh->lastInsertId();    
 
     foreach($student_portfolio as $num => $item){
-        print_r($student_portfolio);
+
         $cols = 'student, ';
         $values = $student_id.', ';
         
         $data = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $item['image']));
-        $url = 'uploads/'.$student_values['slug'].'-'.$num.'.png';
+        $url = 'uploads/'.slugify($student_values['last_name']." ".$student_values['first_name']).'-'.$num.'.png';
         file_put_contents($url, $data);
         
         $item['image'] = 'students/'.$url;
@@ -58,5 +59,7 @@
         $sql = "INSERT INTO portfolio_projects (".substr($cols, 0, -2).") VALUES (".substr($values, 0, -2).")";
         $dbh->query($sql);
     }
+
+    echo "Information added. Thanks ".$student_values['first_name']."!";
 
 ?>

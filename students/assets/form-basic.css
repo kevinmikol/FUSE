@@ -1,5 +1,7 @@
 html{
     background-color: #f3f3f3;
+    color:#5F5F5F;
+    font-family: Helvetica;
 }
 
 .form-basic{
@@ -45,6 +47,7 @@ html{
     text-align: right;
     vertical-align: top;
     padding: 12px 25px;
+    font-weight:200;
 }
 
 .form-basic input{
@@ -74,6 +77,7 @@ html{
     padding: 16px 8px;
     border: 1px solid #dbdbdb;
     font-size:16px;
+    height: 45px;
 }
 
 .form-basic textarea{
@@ -162,4 +166,35 @@ html{
         margin: 0;
     }
 
+}
+
+hr{
+    margin: 50px 0 10px 0;
+    border-color: #E0E0E0;
+    border-style: solid;
+}
+
+h2{
+    font-weight:100;
+    padding:20px;
+    border:2px solid #dbdbdb;
+    margin:60px 0 20px 0;
+}
+
+.social-links{
+    display:inline-block;
+}
+
+.social-links i{
+    font-size: 20px;
+    padding: 8px;
+    background: #DADADA;
+    margin-right: 10px;
+    width: 25px;
+    text-align: center;
+}
+
+.social-links input{
+    width:200px;
+    margin: 10px 0;
 }

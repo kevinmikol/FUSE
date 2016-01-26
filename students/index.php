@@ -1,7 +1,15 @@
 <?php $projects = 3;
-if($_POST){
-    print_r($_POST);
-}?>
+date_default_timezone_set('utc');
+$SocialNetworks = array(
+    "Website" => "globe",
+    "LinkedIn" => "linkedin",
+    "Twitter" => "twitter",
+    "Behance" => "behance",
+    "Github" => "github",
+    "Tumblr" => "tumblr",
+    "Instagram" => "instagram"
+);
+?>
 <!DOCTYPE html>
 <html>
 
@@ -14,6 +22,7 @@ if($_POST){
 	<title>FUSE Student Information</title>
 
 	<link rel="stylesheet" href="assets/form-basic.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     
     <style>
         .cropit-image-preview {
@@ -29,17 +38,24 @@ if($_POST){
     <div class="main-content">
 
         <!-- You only need this form and the form-basic.css -->
-
+        <h1 class="loading" style="display:none;">Loading... Please keep this page open.</h1>
         <form class="form-basic" method="post" action="index.php">
 
             <div class="form-title-row">
                 <h1>FUSE Website Registration</h1>
             </div>
-
+            <h2>Who are you?</h2>
             <div class="form-row">
                 <label>
-                    <span>Full Name</span>
-                    <input type="text" name="name">
+                    <span>First Name</span>
+                    <input type="text" name="first_name">
+                </label>
+            </div>
+            
+            <div class="form-row">
+                <label>
+                    <span>Last Name</span>
+                    <input type="text" name="last_name">
                 </label>
             </div>
 
@@ -49,7 +65,48 @@ if($_POST){
                     <input type="email" name="email">
                 </label>
             </div>
+            
+            <div class="form-row">
+                <label>
+                    <span>T-Shirt Size</span>
+                    <select name="shirt_size">
+                        <option value="0">Small</option>
+                        <option value="1">Medium</option>
+                        <option value="2">Large</option>
+                        <option value="3">Extra Large</option>
+                    </select>
+                </label>
+            </div>
 
+            <div class="form-row">
+                <label>
+                    <span>Biography</span>
+                    <textarea name="bio" style="height:200px;"></textarea>
+                </label>
+            </div>
+            
+            <h2>Social Links</h2>
+            
+            <div class="form-row">
+                <label>
+                    <span>Add Link:</span>
+                    <select class="network-list">
+                            <option style="display:none;" disabled selected value="default">choose network</option>
+                        <?php foreach($SocialNetworks as $label => $value){ ?>
+                            <option value="<?=$value?>"><?=$label?></option>
+                        <? } ?>
+                    </select>
+                </label>
+            </div>
+            
+            <div class="form-row">
+                <label>
+                    <span>My Links:</span>
+                    <div class="social-links"></div>
+                </label>
+            </div>
+            
+            <h2>What do you study?</h2>
             <div class="form-row">
                 <label>
                     <span>Major</span>
@@ -63,8 +120,8 @@ if($_POST){
             
             <div class="form-row">
                 <label>
-                    <span>Grade</span>
-                    <select name="grade">
+                    <span>Class</span>
+                    <select name="class">
                         <option value="0">Freshman</option>
                         <option value="1">Sophmore</option>
                         <option value="2">Junior</option>
@@ -72,22 +129,17 @@ if($_POST){
                     </select>
                 </label>
             </div>
-
-            <div class="form-row">
-                <label>
-                    <span>Short Biography</span>
-                    <textarea name="bio"></textarea>
-                </label>
-            </div>
             
             <div class="form-row">
                 <label>
-                    <span>Portfolio Website (with http://)</span>
-                    <input type="text" name="website">
+                    <span>Graduation Month & Year</span>
+                    <select name="grad_month">
+                        <option value="5">May</option>
+                        <option value="12">December</option>
+                    </select>
+                    <input type="number" name="grad_year" style="width:80px;" value="<?=date('Y');?>" />
                 </label>
             </div>
-            
-            <hr />
             
             <?php
                 $i = 1;
@@ -101,17 +153,17 @@ if($_POST){
                     </div>
                     <div class="form-row">
                         <label>
-                            <span>Short Biography</span>
+                            <span>Description</span>
                             <textarea name="portfolio[<?=$i?>][description]"></textarea>
                         </label>
                     </div>
                     <div class="form-row">
                         <label>
                             <span>URL - if applicable (with http://)</span>
-                            <input type="text" name="portfolio[<?=$i?>][url]">
+                            <input type="text" name="portfolio[<?=$i?>][url]" class="notRequired">
                         </label>
                     </div>
-                    <h4>Image to Display</h4>
+                    <h4 style="font-weight:200;">Image to Display (thumbnail)</h4>
                     <div class="image-cropper" style="text-align:center;">
                         <!-- This is where the preview image is displayed -->
                         <div class="cropit-image-preview" style="display:none; margin: 0 auto;"></div>
@@ -125,9 +177,9 @@ if($_POST){
                         <input type="hidden" class="image-data" name="portfolio[<?=$i?>][image]" />
                     </div>
                     <!-- This wraps the whole cropper -->
-            <hr style="margin-top:50px;"/>
             <?  $i++;
                 } ?>
+            <hr />
             <p>Please make sure that all the information above is correct before submitting.</p>
             <div class="form-row">
                 <button type="submit">Submit Form</button>
@@ -138,15 +190,40 @@ if($_POST){
     </div>
 
 </body>
-    
     <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
     <script src="assets/crop.js"></script>
     
     <script>
+        
+        function validateForm(){
+            var isValid = true;
+            
+            $('input').each(function(){
+                if(!$(this).hasClass('notRequired')){
+                    if($(this).val() == '')
+                        isValid = false;
+                }
+            });
+            
+            return isValid;
+        }
+        
         $('.image-cropper').cropit();
         $('.cropit-image-input').change(function(){
             $(this).parent().find('.cropit-image-preview').fadeIn();
             $(this).parent().find('.cropit-image-zoom-input').fadeIn();
+        });
+        
+        function removeLink(link){
+            $('.social-links').find('div[data-network='+link+']').remove();
+            $('.network-list').find('option[value='+link+']').show();
+        }
+        
+        $('.network-list').change(function(){
+            $('.social-links').append('<div data-network="'+$(this).val()+'"><i class="fa fa-'+$(this).val()+'"></i> <input type="text" name="social['+$(this).val()+']" placeholder="url (with http://)" /> <a onClick="removeLink(\''+$(this).val()+'\')">remove</a><br /></div>');
+            
+            $(this).find('option[value='+$(this).val()+']').hide();
+            $(this).val('default');
         });
         
         $('form').submit(function(e){
@@ -161,9 +238,19 @@ if($_POST){
                 $(this).find('.image-data').val(imageData);
             });
             
+            if(!validateForm()){
+                alert("Uhoh! Missing content in some form fields. Please make sure that everything is filled out and try submitting again.");
+                return false;
+            }
+            
+            $(this).slideUp();
+            $('.loading').fadeIn();
+            
             $.post("go.php", $(this).serialize(),
                 function(data){
-                    alert(data);
+                    $('.loading').fadeOut(100);
+                    $('.loading').html(data);
+                    $('.loading').delay(100).fadeIn(100);
                 }
             );
 
