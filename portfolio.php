@@ -9,13 +9,18 @@
     if($stmt->rowCount() == 0){die;}
 
     $student = $stmt->fetch();
+
+    $dateObj   = DateTime::createFromFormat('!m', $student['grad_month']);
+    $monthName = $dateObj->format('F'); // March
 ?>
 <div class="container">
     <!-- Portfolio Item Heading -->
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header"><?=$student['first_name']." ".$student['last_name']?>
-                <small><?=getMajor($student['major'])?></small>
+                <small>
+                    <?=getMajor($student['major'])?>
+                    <h5>Anticipated Graduation Date: <?=$monthName?> <?=$student['grad_year']?></h5></small>
             </h1>
         </div>
     </div>
@@ -26,10 +31,11 @@
 
         <div class="col-md-4">
             <img class="img-responsive" src="http://rufflifechicago.com/wp-content/uploads/cat-treats.jpg" alt="">
+            <div class="social-links">
             <?php foreach(unserialize($student['social']) as $key => $value){ ?>
                 <a href="<?=$value?>" target="_blank"><i class="fa fa-<?=$key?>"></i></a>
             <? } ?>
-            <h6>Anticipated Graduation Date: <?=$student['grad_month']?>/<?=$student['grad_year']?></h6>
+            </div>
         </div>
 
         <div class="col-md-8">
@@ -46,6 +52,7 @@
         <div class="col-lg-12">
             <h3 class="page-header">Featured Projects</h3>
         </div>
+        
         <?php
             $stmt = $dbh->prepare('SELECT * FROM portfolio_projects WHERE student = :id');
             $stmt->bindParam(':id', $student['id']);
