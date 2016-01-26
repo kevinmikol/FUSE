@@ -1,4 +1,6 @@
-<?php require('includes/header.php'); ?>
+<?php
+header('Location: /students');
+require('includes/header.php'); ?>
 
 <div id="video-wrap">
     <video preload="metadata" autoplay loop id="header-video">
