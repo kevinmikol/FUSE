@@ -20,7 +20,8 @@
             <h1 class="page-header"><?=$student['first_name']." ".$student['last_name']?>
                 <small>
                     <?=getMajor($student['major'])?>
-                    <h5>Anticipated Graduation Date: <?=$monthName?> <?=$student['grad_year']?></h5></small>
+                    <h5>Anticipated Graduation Date: <?=$monthName?> <?=$student['grad_year']?></h5>
+                </small>
             </h1>
         </div>
     </div>

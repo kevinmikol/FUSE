@@ -17,6 +17,10 @@
     z-index:0;
 }
 
+.social-links{
+    text-align: center;
+}
+
 .social-links a{
     font-size: 24px;
     padding: 7px;
@@ -26,5 +30,5 @@
     height: 50px;
     display: inline-block;
     text-align: center;
-    margin: 5px 5px 0 0;
+    margin: 20px 5px 0 0;
 }
