@@ -82,7 +82,8 @@ $SocialNetworks = array(
             <div class="form-row">
                 <label>
                     <span>Biography</span>
-                    <textarea name="bio" style="height:200px;"></textarea>
+                    <textarea placeholder="html allowed" name="bio" style="height:200px;"></textarea>
+                    <p style="text-align:center;color:red;">Please add <b class="bio-count">200</b> more words.</p>
                 </label>
             </div>
             
@@ -152,10 +153,11 @@ $SocialNetworks = array(
                             <input type="text" name="portfolio[<?=$i?>][title]">
                         </label>
                     </div>
-                    <div class="form-row">
+                    <div class="form-row description">
                         <label>
                             <span>Description</span>
-                            <textarea name="portfolio[<?=$i?>][description]"></textarea>
+                            <textarea placeholder="role in project, year completed, software used, etc.," name="portfolio[<?=$i?>][description]"></textarea>
+                            <p style="text-align:center;color:red;">Please add <b class="count">100</b> more words.</p>
                         </label>
                     </div>
                     <div class="form-row">
@@ -225,6 +227,14 @@ $SocialNetworks = array(
             $('.social-links').find('div[data-network='+link+']').remove();
             $('.network-list').find('option[value='+link+']').show();
         }
+        
+        $('textarea[name=bio]').bind("change keyup input",function() { 
+            $('.bio-count').text(200 - $('textarea[name=bio]').val().trim().replace(/\s+/gi, ' ').split(' ').length);
+        });
+        
+        $('.description textarea').bind("change keyup input",function() { 
+            $(this).parent().find('.count').text(50 - $(this).val().trim().replace(/\s+/gi, ' ').split(' ').length);
+        });
         
         $('.network-list').change(function(){
             $('.social-links').append('<div data-network="'+$(this).val()+'"><i class="fa fa-'+$(this).val()+'"></i> <input type="text" name="social['+$(this).val()+']" placeholder="url (with http://)" /> <a onClick="removeLink(\''+$(this).val()+'\')">remove</a><br /></div>');
