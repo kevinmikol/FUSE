@@ -157,7 +157,7 @@ $SocialNetworks = array(
                         <label>
                             <span>Description</span>
                             <textarea placeholder="role in project, year completed, software used, etc.," name="portfolio[<?=$i?>][description]"></textarea>
-                            <p style="text-align:center;color:red;">Please add <b class="count">100</b> more words.</p>
+                            <p style="text-align:center;color:red;">Please add <b class="count">50</b> more words.</p>
                         </label>
                     </div>
                     <div class="form-row">
