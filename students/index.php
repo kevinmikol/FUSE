@@ -39,7 +39,7 @@ $SocialNetworks = array(
     <div class="main-content">
 
         <!-- You only need this form and the form-basic.css -->
-        <h1 class="loading" style="display:none;">Loading... Please keep this page open.</h1>
+        <h1 class="loading" style="display:none;">Loading... Please keep this page open.<br /><h3>Be sure to upload your pieces to the server in at least 1920x1080.</h3></h1>
         <form class="form-basic" method="post" action="index.php">
 
             <div class="form-title-row">
@@ -83,7 +83,7 @@ $SocialNetworks = array(
                 <label>
                     <span>Biography</span>
                     <textarea placeholder="html allowed" name="bio" style="height:200px;"></textarea>
-                    <p style="text-align:center;color:red;">Please add <b class="bio-count">200</b> more words.</p>
+                    <p style="text-align:right;font-weight:100;font-size:12px;margin-right:85px;"><b class="bio-count">200</b>/200 words required.</p>
                 </label>
             </div>
             
@@ -157,7 +157,7 @@ $SocialNetworks = array(
                         <label>
                             <span>Description</span>
                             <textarea placeholder="role in project, year completed, software used, etc.," name="portfolio[<?=$i?>][description]"></textarea>
-                            <p style="text-align:center;color:red;">Please add <b class="count">50</b> more words.</p>
+                            <p style="text-align:right;font-weight:100;font-size:12px;margin-right:85px;"><b class="count">50</b>/50 words required.</p>
                         </label>
                     </div>
                     <div class="form-row">
@@ -178,6 +178,7 @@ $SocialNetworks = array(
                         <!-- This is where user selects new image -->
                         <input type="file" class="cropit-image-input" />
                         <input type="hidden" class="image-data" name="portfolio[<?=$i?>][image]" />
+                        <p style="text-align:center;font-weight:100;font-size:12px;margin-right:85px;"><i>target size: 500px by 300px</i></p>
                     </div>
                     <!-- This wraps the whole cropper -->
             <?  $i++;
