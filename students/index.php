@@ -39,7 +39,10 @@ $SocialNetworks = array(
     <div class="main-content">
 
         <!-- You only need this form and the form-basic.css -->
-        <h1 class="loading" style="display:none;">Loading... Please keep this page open.<br /><h3>Be sure to upload your pieces to the server in at least 1920x1080.</h3></h1>
+        <div class="loading" style="display:none;">
+            <h1>Loading... Please keep this page open.</h1>
+            <h3>Be sure to upload your pieces to the server in at least 1920x1080.</h3>
+        </div>
         <form class="form-basic" method="post" action="index.php">
 
             <div class="form-title-row">
@@ -116,6 +119,7 @@ $SocialNetworks = array(
                         <option value="0">Game Design</option>
                         <option value="1">Animation</option>
                         <option value="2">Web and App</option>
+                        <option value="3">Animation & Visual Effects</option>
                     </select>
                 </label>
             </div>
