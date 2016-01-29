@@ -1,5 +1,5 @@
 <?php $projects = 3;
-date_default_timezone_set('utc');
+
 $SocialNetworks = array(
     "Website" => "globe",
     "LinkedIn" => "linkedin",
