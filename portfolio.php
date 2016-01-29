@@ -1,5 +1,18 @@
 <?php
     require('includes/header.php');
+
+    function getMajor($int){
+        switch($int){
+            case 0:
+                return "Interactive Media - Game Design";
+            case 1:
+                return "Interactive Media - Animation";
+            case 2:
+                return "Interactive Media - Web and App";
+            case 3:
+                return "Interactive Media - Animation & Visual Effects";
+        }
+    }
     
     $slug = $_GET['slug'];
     $stmt = $dbh->prepare('SELECT * FROM portfolio_students WHERE slug = :slug');
