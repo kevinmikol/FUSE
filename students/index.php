@@ -191,7 +191,7 @@ $SocialNetworks = array(
             <div class="form-row">
                 <label>
                     <span>Dietary Restrictions?</span>
-                    <input type="text" name="diet">
+                    <input type="text" name="diet" class="notRequired">
                 </label>
             </div>
             <p>Please make sure that all the information above is correct before submitting.</p>
