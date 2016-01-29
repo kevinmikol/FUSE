@@ -25,6 +25,8 @@
                 return "Interactive Media - Animation";
             case 2:
                 return "Interactive Media - Web and App";
+            case 3:
+                return "Interactive Media - Animation & Visual Effects";
         }
     }
 ?>
